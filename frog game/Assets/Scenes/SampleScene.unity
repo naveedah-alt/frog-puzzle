@@ -130,9 +130,10 @@ GameObject:
   - component: {fileID: 202688065}
   - component: {fileID: 202688064}
   - component: {fileID: 202688063}
+  - component: {fileID: 202688066}
   - component: {fileID: 202688062}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Tongue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,12 +226,24 @@ Transform:
   m_GameObject: {fileID: 202688061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.504, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &202688066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202688061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24779578d6fb44090a1e1284349745b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tongue
 --- !u!1 &652918517
 GameObject:
   m_ObjectHideFlags: 0
