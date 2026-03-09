@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tongue : MonoBehaviour
@@ -8,24 +9,30 @@ public class Tongue : MonoBehaviour
     bool hitLilypad;
     void Start()
     {
-        growFactor = 0.0125f;
-        shrinkFactor = 0.0125f;
+        growFactor = 0.125f;
+        shrinkFactor = 0.125f;
         hitLilypad = false;
     }
 
-    void OnCollisionEnter(Collision collision)
+    // void OnCollisionEnter(Collision collision)
+    // {
+    //     if (collision.gameObject.tag == "Lilypad")
+    //     {
+    //         Debug.Log("hit lilly");
+    //         hitLilypad = true;
+    //     }
+    // }
+
+    public void hitLily()
     {
-        if (collision.gameObject.tag == "Lilypad")
-        {
-            hitLilypad = true;
-        }
+        hitLilypad = true;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.LeftArrow) && !hitLilypad) {
-                Resize(growFactor, 'l');
+            Resize(growFactor, 'l');
         }
         if (Input.GetKey(KeyCode.RightArrow) && !hitLilypad) {
             Resize(growFactor, 'r');
@@ -104,5 +111,29 @@ public class Tongue : MonoBehaviour
             gameObject.transform.Translate(new Vector3(0.0f, 0.0f, -Factor/2));
         }
         
+    }
+
+    public Vector3 getEndpoint()
+    {
+        float newX = gameObject.transform.position.x;
+        float newZ = gameObject.transform.position.z;
+        if (gameObject.transform.localScale.x > 1.0f)
+        {
+            newX = (gameObject.transform.position.x * 2.0f)+0.4f;
+        }
+        if (gameObject.transform.localScale.z > 1.0f)
+        {
+            newZ = gameObject.transform.localScale.z/2.0f - Mathf.Abs(gameObject.transform.position.z) - 3.2f;
+        }
+        if (gameObject.transform.localScale.x < 1.0f)
+        {
+            newX = (Mathf.Abs(gameObject.transform.position.x) * 2.0f)-2.8f;
+        }
+        if (gameObject.transform.localScale.z < 1.0f)
+        {
+            newZ = -gameObject.transform.localScale.z/2.0f - Mathf.Abs(gameObject.transform.position.z) - 0.8f;
+        }
+        Vector3 endpoint = new Vector3(newX, 0.5f, newZ);
+        return endpoint;
     }
 }
