@@ -7,11 +7,13 @@ public class Tongue : MonoBehaviour
     float growFactor;
     float shrinkFactor;
     bool hitLilypad;
+    public bool enabled;
     void Start()
     {
         growFactor = 0.125f;
         shrinkFactor = 0.125f;
         hitLilypad = false;
+        enabled = true;
     }
 
     // void OnCollisionEnter(Collision collision)
@@ -25,6 +27,7 @@ public class Tongue : MonoBehaviour
 
     public void hitLily()
     {
+        enabled = false;
         hitLilypad = true;
     }
 
