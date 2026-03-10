@@ -7,6 +7,7 @@ public class Tongue : MonoBehaviour
     float growFactor;
     float shrinkFactor;
     bool hitLilypad;
+    bool hitTreeSap;
     public bool enabled;
     void Start()
     {
@@ -31,22 +32,28 @@ public class Tongue : MonoBehaviour
         hitLilypad = true;
     }
 
+    public void hitSap()
+    {
+        enabled = false;
+        hitTreeSap = true;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.LeftArrow) && !hitLilypad) {
+        if (Input.GetKey(KeyCode.LeftArrow) && !hitLilypad && !hitTreeSap) {
             Resize(growFactor, 'l');
         }
-        if (Input.GetKey(KeyCode.RightArrow) && !hitLilypad) {
+        if (Input.GetKey(KeyCode.RightArrow) && !hitLilypad && !hitTreeSap) {
             Resize(growFactor, 'r');
         }
-        if (Input.GetKey(KeyCode.UpArrow) && !hitLilypad) {
+        if (Input.GetKey(KeyCode.UpArrow) && !hitLilypad && !hitTreeSap) {
             Resize(growFactor, 'u');
         }
-        if (Input.GetKey(KeyCode.DownArrow) && !hitLilypad) {
+        if (Input.GetKey(KeyCode.DownArrow) && !hitLilypad && !hitTreeSap) {
             Resize(growFactor, 'd');
         }
-        else if ((!Input.anyKey) && !hitLilypad)
+        else if ((!Input.anyKey) && !hitLilypad && !hitTreeSap)
         // if ((!Input.GetKey(KeyCode.LeftArrow)) && !hitLilypad)
         {
             BackToNormal(shrinkFactor);
