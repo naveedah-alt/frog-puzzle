@@ -5,18 +5,25 @@ public class PuzzleManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public List<GameObject> tongues;
+    public List<GameObject> flies;
     GameObject mostRecentTongue;
     public GameObject prefab;
     bool puzzleOver;
+    bool puzzleSolved;
     void Start()
     {
         mostRecentTongue = tongues[tongues.Count-1].gameObject;
         puzzleOver = false;
+        puzzleSolved = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (puzzleSolved)
+        {
+            puzzleOver = true;
+        }
         mostRecentTongue = tongues[tongues.Count-1];
         if (Input.GetKeyDown(KeyCode.A) && tongues.Count > 0) {
             GameObject previous = tongues[tongues.Count - 1];
@@ -50,6 +57,18 @@ public class PuzzleManager : MonoBehaviour
                 tongues.Add(mostRecentTongue);
             }
             
+        }
+        foreach (GameObject fly in flies)
+        {
+            Fly currentFly = fly.GetComponent<Fly>();
+            if (!currentFly.hit)
+            {
+                puzzleSolved = false;
+                break;
+            } else if (currentFly.hit)
+            {
+                puzzleSolved = true;
+            }
         }
     }
 
